@@ -35,8 +35,8 @@ void Init() {
             //Cube2_InitVBO();
             break;
         case ASSIGNMENT_4:
-            //Circle_InitShader();
-            //Circle_InitVBO();
+            Circle_InitShader();
+            Circle_InitVBO();
             break;
     }
     glEnable(GL_DEPTH_TEST);
@@ -54,7 +54,7 @@ void Draw() {
             //Cube2_Draw();
             break;
         case ASSIGNMENT_4:
-            //Circle_Draw(); 
+            Circle_Draw(); 
             break;
     }
 }
@@ -71,7 +71,7 @@ void Release() {
             //Cube2_Release();
             break;
         case ASSIGNMENT_4:
-            //Circle_Release();
+            Circle_Release();
             break;
     }
 }

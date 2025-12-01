@@ -38,40 +38,25 @@ void Draw();
 void Release();
 
 // TASK 1
-extern GLuint VBO_Tetrahedron;
-extern GLuint ProgramTetrahedron;
-extern glm::vec3 tetrahedronPos;
-
 void Tetrahedron_InitShader();
 void Tetrahedron_InitVBO();
 void Tetrahedron_HandleKeyboard();
 void Tetrahedron_Draw();
 void Tetrahedron_Release();
 
-std::vector<Vertex3DWithColor> createTetrahedron();
-
 // TASK 2
-extern GLuint VBO_Circle;
-extern GLuint ProgramCircle;
-
 void Circle_InitShader();
 void Circle_InitVBO();
 void Circle_Draw();
 void Circle_Release();
 
 // TASK 3
-extern GLuint VBO_Cube1;
-extern GLuint ProgramCube1;
-
 void Cube1_InitShader();
 void Cube1_InitVBO();
 void Cube1_Draw();
 void Cube1_Release();
 
 // TASK 4
-extern GLuint VBO_Cube2;
-extern GLuint ProgramCube2;
-
 void Cube2_InitShader();
 void Cube2_InitVBO();
 void Cube2_Draw();
