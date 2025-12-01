@@ -1,5 +1,4 @@
 #include "shader.h"
-#include "tetrahedron.h"
 #include <GL/glew.h>
 
 Assignment currentAssignment = ASSIGNMENT_1;

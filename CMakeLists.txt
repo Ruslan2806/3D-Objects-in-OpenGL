@@ -32,7 +32,6 @@ set(SOURCES
 
 set(HEADERS
     ${CMAKE_CURRENT_SOURCE_DIR}/3d-objects/shader.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/3d-objects/tetrahedron.h
 )
 
 # ============================================================================
