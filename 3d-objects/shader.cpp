@@ -58,7 +58,26 @@ void Init() {
 }
 
 void Draw() {
-
+  switch (currentAssignment) {
+        case ASSIGNMENT_1: {
+      
+            break;
+        }
+        case ASSIGNMENT_2: {
+          
+            break;
+        }
+        case ASSIGNMENT_3: {
+          
+            break;
+        }
+        case ASSIGNMENT_4: {
+            
+            break;
+        }
+    }
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glUseProgram(0);
 }
 
 void Release() {
