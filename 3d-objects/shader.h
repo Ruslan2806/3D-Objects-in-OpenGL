@@ -11,6 +11,8 @@ enum Assignment {
 
 extern Assignment currentAssignment;
 
+extern GLuint VBO1;
+
 struct Vertex3D {
     GLfloat x, y, z;
 };
@@ -26,6 +28,7 @@ struct Vertex3DWithTex {
 };
 
 void ShaderLog(unsigned int shader);
+void checkOpenGLerror(); 
 void InitShader();
 void InitVBO();
 void Init();
