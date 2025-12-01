@@ -31,11 +31,13 @@ uniform vec3 offset;
 out vec4 vertexColor;
 
 void main() {
-    vec3 adjustedPosition = position + offset;
-    gl_Position = projection * view * model * vec4(adjustedPosition, 1.0);
+    vec3 rotatedPosition = (model * vec4(position, 1.0)).xyz;
+    vec3 worldPosition = rotatedPosition + offset;
+    gl_Position = projection * view * vec4(worldPosition, 1.0);
     vertexColor = color;
 }
 )";
+
 
 const char* FragShaderTetrahedron = R"(
 #version 330 core
@@ -67,17 +69,38 @@ void Tetrahedron_InitShader() {
     Attrib_vertex_tetrahedron = glGetAttribLocation(ProgramTetrahedron, "position");
     if (Attrib_vertex_tetrahedron == (GLuint)-1) {
         std::cout << "Could not bind attrib position" << std::endl;
+        return;
     }
     
     Attrib_color_tetrahedron = glGetAttribLocation(ProgramTetrahedron, "color");
     if (Attrib_color_tetrahedron == (GLuint)-1) {
         std::cout << "Could not bind attrib color" << std::endl;
+        return;
     }
 
     Uniform_offset = glGetUniformLocation(ProgramTetrahedron, "offset");
+    if (Uniform_offset == (GLuint)-1) {
+        std::cout << "Could not bind uniform offset" << std::endl;
+        return;
+    }
+    
     Uniform_projection = glGetUniformLocation(ProgramTetrahedron, "projection");
+    if (Uniform_projection == (GLuint)-1) {
+        std::cout << "Could not bind uniform projection" << std::endl;
+        return;
+    }
+    
     Uniform_view = glGetUniformLocation(ProgramTetrahedron, "view");
+    if (Uniform_view == (GLuint)-1) {
+        std::cout << "Could not bind uniform view" << std::endl;
+        return;
+    }
+
     Uniform_model = glGetUniformLocation(ProgramTetrahedron, "model");
+    if (Uniform_model == (GLuint)-1) {
+        std::cout << "Could not bind uniform model" << std::endl;
+        return;
+    }
 
     glDeleteShader(vShader);
     glDeleteShader(fShader);
@@ -87,36 +110,36 @@ void Tetrahedron_InitShader() {
 std::vector<Vertex3DWithColor> createTetrahedron() {
     std::vector<Vertex3DWithColor> vertices;
 
-    float h = 0.816f;  // высота тетраэдра
-    float r = 0.577f;  // радиус описанной окружности основания
+    float h = 0.8f;  // высота тетраэдра
+    float r = 0.6f;  // радиус описанной окружности основания
     
     // Верхняя вершина (красная)
     float top_x = 0.0f, top_y = h, top_z = 0.0f;
     
     // Три вершины основания
     float base_y = -0.3f;
-    float v1_x = r, v1_y = base_y, v1_z = 0.0f;                    // Зелёная (вправо)
-    float v2_x = -r/2.0f, v2_y = base_y, v2_z = r*0.866f;          // Синяя (назад-левая)
-    float v3_x = -r/2.0f, v3_y = base_y, v3_z = -r*0.866f;         // Жёлтая (вперед-левая)
+    float v1_x = r, v1_y = base_y, v1_z = 0.0f;                    
+    float v2_x = -r/2.0f, v2_y = base_y, v2_z = r*0.866f;          
+    float v3_x = -r/2.0f, v3_y = base_y, v3_z = -r*0.866f;        
 
-    // Грань 1: верх - зелёная - синяя
-    vertices.push_back({top_x, top_y, top_z, 1.0f, 0.0f, 0.0f, 1.0f}); // красная
+    // Грань 1
+    vertices.push_back({top_x, top_y, top_z, 1.0f, 1.0f, 1.0f, 1.0f}); // белая
     vertices.push_back({v1_x, v1_y, v1_z, 0.0f, 1.0f, 0.0f, 1.0f}); // зелёная
     vertices.push_back({v2_x, v2_y, v2_z, 0.0f, 0.0f, 1.0f, 1.0f}); // синяя
 
-    // Грань 2: верх - синяя - жёлтая
-    vertices.push_back({top_x, top_y, top_z, 1.0f, 0.0f, 0.0f, 1.0f}); // красная
+    // Грань 2
+    vertices.push_back({top_x, top_y, top_z, 1.0f, 1.0f, 1.0f, 1.0f}); // белая
     vertices.push_back({v2_x, v2_y, v2_z, 0.0f, 0.0f, 1.0f, 1.0f}); // синяя
-    vertices.push_back({v3_x, v3_y, v3_z, 1.0f, 1.0f, 0.0f, 1.0f}); // жёлтая
+    vertices.push_back({v3_x, v3_y, v3_z, 1.0f, 0.0f, 0.0f, 1.0f}); // красная
 
-    // Грань 3: верх - жёлтая - зелёная
-    vertices.push_back({top_x, top_y, top_z, 1.0f, 0.0f, 0.0f, 1.0f}); // красная
-    vertices.push_back({v3_x, v3_y, v3_z, 1.0f, 1.0f, 0.0f, 1.0f}); // жёлтая
+    // Грань 3
+    vertices.push_back({top_x, top_y, top_z, 1.0f, 1.0f, 1.0f, 1.0f}); // белая
+    vertices.push_back({v3_x, v3_y, v3_z, 1.0f, 0.0f, 0.0f, 1.0f}); // красная
     vertices.push_back({v1_x, v1_y, v1_z, 0.0f, 1.0f, 0.0f, 1.0f}); // зелёная
 
-    // Грань 4: основание - зелёная - синяя - жёлтая
+    // Грань 4
     vertices.push_back({v1_x, v1_y, v1_z, 0.0f, 1.0f, 0.0f, 1.0f}); // зелёная
-    vertices.push_back({v3_x, v3_y, v3_z, 1.0f, 1.0f, 0.0f, 1.0f}); // жёлтая
+    vertices.push_back({v3_x, v3_y, v3_z, 1.0f, 0.0f, 0.0f, 1.0f}); // красная
     vertices.push_back({v2_x, v2_y, v2_z, 0.0f, 0.0f, 1.0f, 1.0f}); // синяя
 
     return vertices;
@@ -166,25 +189,25 @@ void Tetrahedron_Draw() {
     glUseProgram(ProgramTetrahedron);
 
     glEnableVertexAttribArray(Attrib_vertex_tetrahedron);
-    glEnableVertexAttribArray(Attrib_color_tetrahedron);
-
     glVertexAttribPointer(Attrib_vertex_tetrahedron, 3, GL_FLOAT, GL_FALSE,
                          sizeof(Vertex3DWithColor), (void*)0);
     
+    glEnableVertexAttribArray(Attrib_color_tetrahedron);
     glVertexAttribPointer(Attrib_color_tetrahedron, 4, GL_FLOAT, GL_FALSE,
                          sizeof(Vertex3DWithColor), 
                          (void*)offsetof(Vertex3DWithColor, r));
 
     glm::mat4 projection = glm::perspective(glm::radians(45.0f), 1.0f, 0.1f, 100.0f);
     glm::mat4 view = glm::lookAt(
-        glm::vec3(0.0f, 0.0f, 2.0f),
+        glm::vec3(0.0f, 0.0f, 3.0f),
         glm::vec3(0.0f, 0.0f, 0.0f),
         glm::vec3(0.0f, 1.0f, 0.0f) 
     );
 
     glm::mat4 model = glm::mat4(1.0f);
-    model = glm::rotate(model, glm::radians(45.0f), glm::vec3(1.0f, 0.0f, 0.0f));
-    model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+    model = glm::rotate(model, glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+    model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+    //model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0.0f, 0.0f, 1.0f));
 
     glUniformMatrix4fv(Uniform_projection, 1, GL_FALSE, glm::value_ptr(projection));
     glUniformMatrix4fv(Uniform_view, 1, GL_FALSE, glm::value_ptr(view));
