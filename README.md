@@ -13,11 +13,11 @@
 * **Расширения**: GLEW для загрузки OpenGL функций
 * **Шейдеры**: GLSL 330 core
 
-  ## Компиляция:
-  ```
-  g++ -std=c++17 main.cpp shader.cpp -o lab12 \
+## Компиляция:
+```
+g++ -std=c++17 main.cpp shader.cpp -o lab12 \
     -I/opt/homebrew/include \
     -L/opt/homebrew/lib \
     -lsfml-graphics -lsfml-window -lsfml-system \
     -lGL -lGLEW
-  ```
+```
