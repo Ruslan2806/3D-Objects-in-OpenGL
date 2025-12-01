@@ -6,7 +6,7 @@
 int main() {
     setlocale(LC_ALL, "ru");
 
-    sf::Window window(sf::VideoMode(1200, 900), "OpenGL Assignments", sf::Style::Default, sf::ContextSettings(32));
+    sf::Window window(sf::VideoMode(900, 900), "OpenGL Assignments", sf::Style::Default, sf::ContextSettings(32));
     window.setVerticalSyncEnabled(true);
     window.setActive(true);
 
