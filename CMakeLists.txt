@@ -28,6 +28,9 @@ set(SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/3d-objects/main.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/3d-objects/shader.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/3d-objects/tetrahedron.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/3d-objects/cube1.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/3d-objects/cube2.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/3d-objects/circle.cpp
 )
 
 set(HEADERS

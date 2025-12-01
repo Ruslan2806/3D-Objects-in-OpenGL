@@ -1,10 +1,9 @@
+// #################################################### TASK 1 ####################################################
+
+// Градиентный тетраэдр, который можно двигать вдоль осей кнопками клавиатуры. 
+// Он должен быть повёрнут так, чтобы было видно, что это тетраэдр.
+
 #include "shader.h"
-#include <iostream>
-#include <vector>
-#include <cmath>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
-#include <SFML/Window.hpp>
 
 GLuint VBO_Tetrahedron;
 GLuint ProgramTetrahedron;
@@ -48,24 +47,6 @@ void main() {
     FragColor = vertexColor;
 }
 )";
-
-void ShaderLog(unsigned int shader) {
-    int infologLen = 0;
-    glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &infologLen);
-    if (infologLen > 1) {
-        int charsWritten = 0;
-        std::vector<char> infoLog(infologLen);
-        glGetShaderInfoLog(shader, infologLen, &charsWritten, infoLog.data());
-        std::cout << "InfoLog: " << infoLog.data() << std::endl;
-    }
-}
-
-void checkOpenGLerror() {
-    GLenum err = glGetError();
-    if (err != GL_NO_ERROR) {
-        std::cerr << "OpenGL error: " << err << std::endl;
-    }
-}
 
 void Tetrahedron_InitShader() {
     GLuint vShader = glCreateShader(GL_VERTEX_SHADER);
