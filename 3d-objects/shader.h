@@ -1,5 +1,6 @@
 #pragma once
 #include <GL/glew.h>
+#include <glm/glm.hpp>
 #include <vector>
 
 enum Assignment {
@@ -10,8 +11,6 @@ enum Assignment {
 };
 
 extern Assignment currentAssignment;
-
-extern GLuint VBO1;
 
 struct Vertex3D {
     GLfloat x, y, z;
@@ -27,10 +26,6 @@ struct Vertex3DWithTex {
     GLfloat u, v;
 };
 
-void ShaderLog(unsigned int shader);
-void checkOpenGLerror(); 
-void InitShader();
-void InitVBO();
 void Init();
 void Draw();
 void Release();

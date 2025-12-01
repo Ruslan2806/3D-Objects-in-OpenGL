@@ -27,10 +27,12 @@ find_package(SFML 2.6 COMPONENTS graphics window system REQUIRED)
 set(SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/3d-objects/main.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/3d-objects/shader.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/3d-objects/tetrahedron.cpp
 )
 
 set(HEADERS
     ${CMAKE_CURRENT_SOURCE_DIR}/3d-objects/shader.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/3d-objects/tetrahedron.h
 )
 
 # ============================================================================
@@ -43,12 +45,12 @@ add_executable(lab12 ${SOURCES} ${HEADERS})
 # ============================================================================
 target_link_libraries(lab12 
     PRIVATE
-        OpenGL::OpenGL           
-        GLEW::GLEW              # GLEW для загрузки функций
-        glm::glm                # GLM для матричных операций
-        sfml-graphics           # SFML Graphics
-        sfml-window             # SFML Window (OpenGL контекст)
-        sfml-system             # SFML System
+        OpenGL::OpenGL           # OpenGL 3.3
+        GLEW::GLEW               # GLEW для загрузки функций
+        glm::glm                 # GLM для матричных операций
+        sfml-graphics            # SFML Graphics
+        sfml-window              # SFML Window (OpenGL контекст)
+        sfml-system              # SFML System
 )
 
 # ============================================================================
