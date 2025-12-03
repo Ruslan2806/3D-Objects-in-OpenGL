@@ -52,6 +52,7 @@ int main() {
                     currentAssignment = ASSIGNMENT_2;
                     Init();
                     std::cout << "Текущая фигура 2: Кубик с наложенной на него текстурой\n" << std::endl;
+                    std::cout << "# Управление: стрелки - изменение интенсивности, Q/A - Красный канал, W/S - Зеленый канал,  E/D - Синий канал" << std::endl;
                 }
                 else if (event.key.code == sf::Keyboard::Num3) {
                     Release();
