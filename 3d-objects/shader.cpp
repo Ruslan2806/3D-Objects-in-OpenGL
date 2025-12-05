@@ -31,8 +31,8 @@ void Init() {
         Cube1_InitVBO();
         break;
     case ASSIGNMENT_3:
-        //Cube2_InitShader();
-        //Cube2_InitVBO();
+        Cube2_InitShader();
+        Cube2_InitVBO();
         break;
     case ASSIGNMENT_4:
         Circle_InitShader();
@@ -51,7 +51,7 @@ void Draw() {
         Cube1_Draw();
         break;
     case ASSIGNMENT_3:
-        //Cube2_Draw();
+        Cube2_Draw();
         break;
     case ASSIGNMENT_4:
         Circle_Draw();

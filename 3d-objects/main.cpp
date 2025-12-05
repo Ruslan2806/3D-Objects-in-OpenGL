@@ -51,14 +51,15 @@ int main() {
                     Release();
                     currentAssignment = ASSIGNMENT_2;
                     Init();
-                    std::cout << "Текущая фигура 2: Кубик с наложенной на него текстурой\n" << std::endl;
-                    std::cout << "# Управление: стрелки - изменение интенсивности, Q/A - Красный канал, W/S - Зеленый канал,  E/D - Синий канал" << std::endl;
+                    std::cout << "Текущая фигура 2: Кубик с наложенной на него текстурой" << std::endl;
+                    std::cout << "# Управление: стрелки - изменение интенсивности, Q/A - Красный канал, W/S - Зеленый канал,  E/D - Синий канал\n" << std::endl;
                 }
                 else if (event.key.code == sf::Keyboard::Num3) {
                     Release();
                     currentAssignment = ASSIGNMENT_3;
                     Init();
-                    std::cout << "Текущая фигура 3: Кубик с двумя смешанными текстурами\n" << std::endl;
+                    std::cout << "Текущая фигура 3: Кубик с двумя смешанными текстурами" << std::endl;
+                    std::cout << "# Управление: стрелки лево/право - изменение пропорций\n" << std::endl;
                 }
                 else if (event.key.code == sf::Keyboard::Num4) {
                     Release();
