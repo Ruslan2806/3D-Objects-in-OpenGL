@@ -6,6 +6,7 @@
 #include "shader.h"
 #include <SFML/Graphics.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include <filesystem>
 
 GLuint VBO_Cube1;
 GLuint ProgramCube1;
@@ -323,7 +324,7 @@ void Cube1_InitVBO() {
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
-    textureID = loadTexture("textures\\FRUITS.jpg");
+    textureID = loadTexture(std::filesystem::path("..") / "3d-objects" / "textures" / "FRUITS.jpg");
     //textureID = loadTexture("textures\\test.jpg");
 
     checkOpenGLerror();
